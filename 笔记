@@ -1,0 +1,129 @@
+1,shell变量
+使用变量:
+	定义一个变量:my_name='hbw'
+	输出一个变量:echo ${my_name}  大括号建议带上,美元符号在输出变量的时候一定要带
+	输出一个字符串:echo 'dad'
+只读变量:
+	使用readonly定义只读变量
+	只读变量不可更改:
+		定义:my_url='google'
+		     readonly my_url
+		这时再修改my_url的值 my_url='baidu' 会报错
+删除变量:
+	unset命令用于删除一个变量:
+	unset my_name
+	但是这个命令不可以删除只读变量
+2,shell字符串
+	单引号:里面所有的内容都会当做字符输出,即使里面有变量和转义符:
+			echo 'hello,${my_name}'
+			输出 hello,${my_name}
+	双引号:里面可以包含变量和转义符:
+			echo "hello,${my_name}"
+			输出 hello,hbw
+	拼接字符串:
+			greeting="hello, "$my_name" !"
+			greeting_1="hello, ${my_name} !"
+			echo $greeting $greeting_1
+			输出  hello,hbw hello,hbw
+	字符串长度:
+			echo ${#my_name}
+	提取字符串:
+			echo ${#my_name:2:3}
+			这句话的意思是从第2个字符开始提取三个字符  y_n
+	查找字符串:
+			string="google"
+			echo `expr index "$string" o`  # 输出 2
+			注意： 以上脚本中 ` 是反引号，而不是单引号 '，不要看错了。
+3,shell数组
+	定义一个数组:
+		strings=('hbw' 'google' 'baidu' 'hust' 'eic')
+		注意,数组的两个值之间是空格而不是逗号
+	获取数组的一个值:
+		m=${strings[下标]}
+	获取数组单个值的长度:
+		echo ${#strings[下标]}
+	获取数组所有元素:
+		echo ${strings[@]}
+		echo ${strings[*]}
+	获取数组的长度:
+		echo ${#strings[@]}
+4,参数传递:
+	在shell中使用  $0 可以获得所执行的文件名  例如./test1.sh
+	在终端输入:./test.sh 1 2 3
+	1 2 3分别是第1 2 3 个参数,分别使用$1 $2 $3获取三个参数
+	使用$#可以获得所有参数的个数
+	$*	:以一个单字符串显示所有向脚本传递的参数。
+		如"$*"用「"」括起来的情况、以"$1 $2 … $n"的形式输出所有参数。
+	$@	:与$*相同，但是使用时加引号，并在引号中返回每个参数。
+		如"$@"用「"」括起来的情况、以"$1" "$2" … "$n" 的形式输出所有参数。
+	
+5,运算符
+	这里主要讲的是运算符的一些需要注意的地方
+	+	加法	`expr $a + $b` 结果为 30。
+	-	减法	`expr $a - $b` 结果为 -10。
+	*	乘法	`expr $a \* $b` 结果为  200。
+	/	除法	`expr $b / $a` 结果为 2。
+	%	取余	`expr $b % $a` 结果为 0。 
+	
+	注意:一定看好`不是单引号' 还一定要注意运算符和变量之间留空格,乘号要转义,还有 expr是必须要写的
+	
+	
+	=	赋值	a=$b 将把变量 b 的值赋给 a。
+	==	相等。用于比较两个数字，相同则返回 true。	[ $a == $b ] 返回 false。   注意:一定要看清楚那几个地方都要留空格!!!!!!
+	!=	不相等。用于比较两个数字，不相同则返回 true。	[ $a != $b ] 返回 true。    注意:一定要看清楚那几个地方都要留空格!!!!!!
+
+
+6,echo的用法
+	显示变量,手动输入变量:
+		read name
+		echo "$name atest"
+	将上面两句话保存为test3.sh,运行,会让你输入一个字符串,然后把输入的字符串赋给name,打印输出
+
+	显示换行与显示不换行,
+		换行:
+		echo -e "a test\n"  #-e的含义是让里面的文本格式符(\n)生效
+		echo "OK!"
+		不换行:
+		echo -e "a test\c"  #\c是不换行
+		echo "OK!"
+		如果不加-e,无论双引号还是单引号都只会输出\n,不会把\n当做文本格式符来看
+		echo一般是默认添加换行的,即在运行完一条命令后会自动换行,上面又加了一个\n就是再换一行
+		
+7,test命令
+	1,数值测试
+		a=100
+		b=100
+		if test $[a-b] -eq $[a+b]
+		then
+			echo '两个数相等！'
+		else
+			echo '两个数不相等！'
+		fi
+		这里注意[]里面可以进行数值的运算,而且变量与运算符之间不用有空格
+	2,字符串测试
+		num1="ru1noob"
+		num2="runoob"
+		if test $num1 = $num2
+		then
+			echo '两个字符串相等!'
+		else
+			echo '两个字符串不相等!'
+		fi
+		这里注意$num1和$num2与运算符之间有空格
+		
+		num2="runoob"
+		if test -z num2
+		then
+			echo '为0!'
+		else
+			echo '不为0!'
+		fi
+	3,文件测试
+		if test -e ./test.sh
+		then
+			echo '文件已存在!'
+		else
+			echo '文件不存在!'
+		fi
+		
+
