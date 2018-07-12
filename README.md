@@ -7,7 +7,7 @@
     * work1.sh是递归阶乘的代码
 
 ## 二,运行结果
-    **work1.sh**
+**work1.sh**
 
         hbw@hbw-Vostro-3559:~/shell$ ./work1.sh 6
         720
