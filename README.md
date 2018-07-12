@@ -17,7 +17,7 @@ test.sh到test6.sh是学习shell中的一些小实例
     calculates a number's factorial
 **自动解压缩**
 
-![Alt text](/home/hbw/图片/2.png)
+![Alt text](https://github.com/converk/Linux-work/blob/master/2.png?raw=true)
 
 ## 三,解题思路
 **阶乘**
