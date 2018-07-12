@@ -12,12 +12,11 @@ fun(){
     local j_1=$[$j-1]
     if [ $j_1 -eq 1 ]
     then
-        return 2
+        i=2
     else
         fun $j_1
-        i=$[$j*$?]  #这里$j就是为什么不可以用全局变量
+        i=$[$j*$i]  #这里$j就是为什么不可以用全局变量
     fi
-    return $i
 }
 
 if [ $# -ne 1 ]
@@ -26,5 +25,5 @@ then   #usage信息
     echo "calculates a number's factorial"
 else
     fun $1
-    echo "$?"   #接收返回值
+    echo "$i"   #接收返回值
 fi
