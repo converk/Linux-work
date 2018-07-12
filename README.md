@@ -1,11 +1,11 @@
 # Linux-work
 
 ## 一,文件结构
-    * .vscode是vs code自动生成
-    * test.sh到test6.sh是学习shell中的一些小实例
-    * 笔记是学习shell中自己总结的一些比较容易错的用法和语法
-    * **work1.sh**是递归阶乘的代码
-    * **work2.sh**是自动解压的代码
+vscode是vs code自动生成
+test.sh到test6.sh是学习shell中的一些小实例
+笔记是学习shell中自己总结的一些比较容易错的用法和语法
+**work1.sh**是递归阶乘的代码
+**work2.sh**是自动解压的代码
 
 ## 二,运行结果
 **阶乘**
@@ -17,7 +17,7 @@
     calculates a number's factorial
 **自动解压缩**
 
-    ![Alt text](/home/hbw/图片/2.png)
+![Alt text](/home/hbw/图片/2.png)
 
 ## 三,解题思路
 **阶乘**
